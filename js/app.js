@@ -1,15 +1,18 @@
 // Enemies our player must avoid
-let Enemy = function (x, y, speed) {
+
+class Enemy {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
-    this.sprite = 'images/enemy-bug.png';
-};
+    constructor(x, y, speed) {
+         this.x = x;
+         this.y = y;
+         this.speed = speed;
+         this.sprite = 'images/enemy-bug.png';
+     }
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -30,14 +33,18 @@ Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-let Player = function (x, y, speed) {
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
-    this.sprite = 'images/char-boy.png';
+class Player {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    constructor(x, y, speed) {
+         this.x = x;
+         this.y = y;
+         this.speed = speed;
+         this.sprite = 'images/char-boy.png';
+     }
 }
 
 Player.prototype.render = function () {
@@ -51,8 +58,8 @@ Player.prototype.update = function (dt) {
     // Check for a collision, if so put player back at beginning position
     for (let enemy of enemyList) {
         if (Math.abs(this.y - enemy.y) < 40 && Math.abs(this.x - enemy.x) < 40) {
-            this.x = 150;
-            this.y = 485;
+            this.x = 200;
+            this.y = 445;
         }
     }
 };
@@ -100,11 +107,11 @@ const enemyList = [];
 let enemy1 = new Enemy(-50, 65, 285);
 let enemy2 = new Enemy(-50, 145, 75);
 let enemy3 = new Enemy(-50, 220, 175);
-let enemy4 = new Enemy(-50, 320, 220);
-let enemy5 = new Enemy(-50, 400, 75);
+let enemy4 = new Enemy(-50, 310, 220);
+let enemy5 = new Enemy(-50, 375, 75);
 enemyList.push(enemy5, enemy4, enemy3, enemy2, enemy1);
 
-let player = new Player(150, 450, 100);
+let player = new Player(200, 445, 50);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
